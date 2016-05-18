@@ -130,103 +130,103 @@ Example:
     <style>
       :host {
         display: block;
-        position: relative;
-        text-align: left;
-        @apply(--mercury-paginator);
       }
-
       .pagination {
-        display: inline-block;
-        list-style: none;
-        margin: 1rem;
-        padding: 1em;
-        vertical-align: bottom;
-        word-spacing: -5px;
+        display:block;
+        margin:0;padding:0;
       }
-
       .pagination li {
-        display: inline-block;
-        font-size: 1em;
-        vertical-align: bottom;
-        word-spacing: normal;
-        @apply(--mercury-paginator-item);
+        display:block;
+        float:left;
+        font-size:13px;
+        vertical-align:top;
       }
-
       .pagination li.active a {
-        background-color: #2BA6CB;
-        color: white;
+        border-bottom:1px dotted var(--things-secondary-background-color);
+        color:var(--things-secondary-background-color);
         text-decoration: none;
-        @apply(--mercury-paginator-link-selected);
       }
-
       .pagination li.disabled a,
       .pagination li.disabled a:hover {
-        background-color: #F5F5F5;
         color: #CCCCCC;
         cursor: default;
-        @apply(--mercury-paginator-link-disabled);
       }
-
       .pagination a {
-        background-color: var(--mercury-paginator-item-bg-color, white);
-        border: var(--mercury-paginator-item-border, 1px solid #EEEEEE);
-        color: var(--mercury-paginator-item-color, #2BA6CB);
+        padding:6px 4px 4px 4px;
         cursor: pointer;
         display: inline-block;
-        line-height: normal;
-        font-weight: var(--mercury-paginator-item-font-weight, normal);
-        padding: var(--mercury-paginator-item-padding, 0.5em 1em);
+        color: var(--things-primary-text-color);
         text-decoration: none;
-        -webkit-transition: var(--mercury-paginator-item-transition, background-color 0.3s ease-in);
-        transition: var(--mercury-paginator-item-transition, background-color 0.3s ease-in);
-        @apply(--mercury-paginator-link);
       }
-
       .pagination a:hover,
       .pagination a:focus {
-        background-color: var(--mercury-paginator-item-hover-bg-color, #F5F5F5);
-        color: var(--mercury-paginator-item-hover-color, #2BA6CB);
-        @apply(--mercury-paginator-link-hover);
+        color: var(--things-secondary-background-color);
       }
-
-      .pagination a:active {
-        background-color: var(--mercury-paginator-item-active-bg-color, #EEEEEE);
-        @apply(--mercury-paginator-link-active);
-      }
-
       .current {
         width: 30px;
       }
-
-      .label {
-        padding: 0px 10px 0px 10px;
-        color: black;
+      iron-icon{
+        @apply(--things-icon);
+      }
+      .total-info{
+        float:right !important;
+        padding-top:8px;
+        color:var(--things-primary-text-color);
+      }
+      .total-info strong{
+        color:var(--things-focus-background-color);
+        font-weight:bold;
+      }
+      .page-info{
+        background-color:var(--things-lightgrey-background-color);
+        -webkit-border-radius:4px;
+        -moz-border-radius:4px;
+        border-radius:4px;
+        display:block;
+        margin-top:4px;
+        padding:2px 7px;
+        color:var(--things-primary-text-color);
+        font-size:12px;
+        font-weight:300;
+      }
+      input{
+        @apply(--things-input);
+        margin-bottom:0;
+        padding:1px;
+        font-size:12px;
+        text-align:center;
       }
     </style>
 
     <template is="dom-if" if="[[showFlag]]">
       <ul id="paginationlist" class="pagination">
         <template is="dom-if" if="[[showFirst]]">
-          <li><a on-tap="firstPage">First</a></li>
+          <li>
+            <a on-tap="firstPage"><iron-icon icon="av:skip-previous"></iron-icon></a>
+          </li>
         </template>
 
         <li class$='[[disablePrev]]'>
-          <a on-tap="prevPage">[[previous]]</a>
+          <a on-tap="prevPage"><!-- [[previous]] --><iron-icon icon="icons:chevron-left"></iron-icon></a>
         </li>
 
-        <li><a>Page</a><li>
-        <paper-input type='number' value="{{currentPage}}" min="1" class="current"></paper-input>
-        <li><a>of   [[totalPage]]</a><li>
+        <li>
+          <span class="page-info">
+            Page
+            <input type='number' value="{{currentPage}}" min="1" class="current"></input>
+            of  [[totalPage]]
+          </span>
+        <li>
 
         <li class$='[[disableNext]]'>
-            <a on-tap="nextPage">[[next]]</a>
+            <a on-tap="nextPage"><!-- [[next]] --><iron-icon icon="icons:chevron-right"></iron-icon></a>
         </li>
 
         <template is="dom-if" if="[[showLast]]">
-          <li><a on-tap="lastPage">Last</a></li>
+          <li><a on-tap="lastPage"><iron-icon icon="av:skip-next"></iron-icon></a></li>
         </template>
 
-        <li><a>Items [[pageStartIdx]] - [[pageEndIdx]] of Total : [[totalCount]]</a></li>
+        <li class="total-info">Items <strong>[[pageStartIdx]] - [[pageEndIdx]]</strong> of Total : [[totalCount]]</li>
       </ul>
     </template>
 
