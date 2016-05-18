@@ -213,7 +213,7 @@ Example:
         <li>
           <span class="page-info">
             Page
-            <input type='number' value="{{currentPage}}" min="1" class="current"></input>
+            <input id="current-page" is="iron-input" type='number' bind-value="{{currentPage}}" min="1" class="current"></input>
             of  [[totalPage]]
           </span>
         <li>
@@ -275,7 +275,8 @@ Example:
         currentPage: {
           type: Number,
           value: 0,
-          notify: true
+          notify: true,
+          observer: '_currentPageChanged'
         },
 
         /**
@@ -287,7 +288,8 @@ Example:
          */
         totalCount: {
           type: Number,
-          value: 0
+          value: 0,
+          observer: '_totalCountChanged'
         },
 
         /**
@@ -362,7 +364,7 @@ Example:
 
         disableNext: {
           type: String,
-          computed: '_disableNextBtn(currentPage, totalPage)'
+          computed: '_disableNextBtn(currentPage)'
         },
 
         disablePrev: {
@@ -371,11 +373,6 @@ Example:
         }
 
       },
-
-      observers: [
-        '_totalCountChanged(totalCount)',
-        '_currentPageChanged(currentPage)'
-      ],
 
       /**
        * Disable prev buttom if currentpage page is 0
@@ -391,12 +388,11 @@ Example:
       /**
        * Disable next buttom if currentpage page is equal pagecount
        *
-       * @param {string} currentpage
-       * @method _disableNextBtn
-       *
+       * @param {Number} currentpage
+       * @param {Number} totalPage
        */
       _disableNextBtn: function(currentPage, totalPage) {
-        return currentPage === totalPage ? 'disabled' : '';
+        return currentPage >= totalPage ? 'disabled' : '';
       },
 
       /**
@@ -440,13 +436,15 @@ Example:
       },
 
       /**
-       * Get total pages
-       *
-       * @method getPageCount
+       * Set total pages
        */
       setTotalPage: function () {
         var totalPage = Math.ceil( this.totalCount / this.perPage );
         this.totalPage = totalPage >= 0 ? totalPage : 0;
+
+        if(this.$$('#current-page')) {
+          this.$$('#current-page').setAttribute('max', this.totalPage);
+        }
       },
 
       /**
@@ -464,15 +462,16 @@ Example:
       /**
        * Called when the current page changes
        *
-       * @event pager-change
+       * @param {Boolean} valid
        */
       _currentPageChanged: function (currentPage) {
-        this.fire('pager-change', {
-          page: currentPage,
-          limit: this.perPage
-        });
-
+        this.fire('pager-change', { page: currentPage, limit: this.perPage });
         this.setPageIndex();
+
+        if(this.totalPage && this.totalPage > 0 && currentPage > this.totalPage) {
+          if(this.$$('#current-page')) this.$$('#current-page').setAttribute('max', this.totalPage);
+          this.async(function() { this.set('currentPage', this.totalPage); }, 300);
+        }
       },
 
       /**
@@ -480,11 +479,6 @@ Example:
        */
       _totalCountChanged: function(totalCount) {
         this.setTotalPage();
-
-        /*if(this.currentPage > this.totalPage) {
-          this.currentPage = 1;
-        }*/
-
         this.showFlag = this.totalPage > 1;
       }
 
