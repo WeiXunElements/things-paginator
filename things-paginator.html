@@ -37,7 +37,7 @@ Or [download as ZIP](https://github.com/bquarks/mercury-paginator/archive/master
     ```html
     <template is="dom-bind">
 
-        <mercury-paginator perpage="15" items="{{items}}"></mercury-paginator>
+        <mercury-paginator limit="15" items="{{items}}"></mercury-paginator>
 
         <div class="div-table">
             <div class="head-row">
@@ -60,7 +60,7 @@ Or [download as ZIP](https://github.com/bquarks/mercury-paginator/archive/master
 
 ## Usage
 
-Specifies an array of elements to the component through the *items* property and set *perpage* property to a pagination number
+Specifies an array of elements to the component through the *items* property and set *limit* property to a pagination number
 
 *You can use *iron-ajax* element to fetch data from server.
 
@@ -99,7 +99,7 @@ For detailed changelog, check [Releases](https://github.com/jorguezz/mercury-pag
 
 Example:
 
-    <mercury-paginator perpage="10" items="{{items}}"></mercury-paginator>
+    <mercury-paginator limit="10" items="{{items}}"></mercury-paginator>
 
     <div class="div-table">
         <div class="head-row">
@@ -253,13 +253,13 @@ Example:
         },
 
         /**
-         * The `perPage` attribute defines the number
+         * The `limit` attribute defines the number
          * of items to show per page
          *
-         * @attribute perPage
+         * @attribute limit
          * @type number
          */
-        perPage: {
+        limit: {
           type: Number,
           value: 50,
           nofity: true
@@ -440,7 +440,7 @@ Example:
        * Set total pages
        */
       setTotalPage: function () {
-        var totalPage = Math.ceil( this.totalCount / this.perPage );
+        var totalPage = Math.ceil( this.totalCount / this.limit );
         this.totalPage = totalPage >= 0 ? totalPage : 0;
 
         if(this.$$('#current-page')) {
@@ -452,8 +452,8 @@ Example:
        * page start index와 page end index를 다시 설정 
        */
       setPageIndex: function() {
-        this.pageStartIdx = ((this.currentPage - 1) * this.perPage) + 1;
-        this.pageEndIdx = this.pageStartIdx + this.perPage - 1;
+        this.pageStartIdx = ((this.currentPage - 1) * this.limit) + 1;
+        this.pageEndIdx = this.pageStartIdx + this.limit - 1;
 
         if(this.pageEndIdx > this.totalCount) {
           this.pageEndIdx = this.totalCount;
@@ -466,7 +466,7 @@ Example:
        * @param {Boolean} valid
        */
       _currentPageChanged: function (currentPage) {
-        this.fire('pager-change', { page: currentPage, limit: this.perPage });
+        this.fire('pager-change', { page: currentPage, limit: this.limit });
         this.setPageIndex();
 
         if(this.totalPage && this.totalPage > 0 && currentPage > this.totalPage) {
@@ -482,9 +482,6 @@ Example:
         this.setTotalPage();
         this.showFlag = this.totalPage > 1;
       }
-
     });
-
   </script>
-
 </dom-module>
