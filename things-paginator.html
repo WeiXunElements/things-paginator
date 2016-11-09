@@ -177,6 +177,10 @@ Example:
         color:var(--things-focus-background-color);
         font-weight:bold;
       }
+      .limit-info{
+        position: relative;
+        left: 50%;
+      }
       .page-info{
         background-color:var(--things-lightgrey-background-color);
         -webkit-border-radius:4px;
@@ -226,7 +230,14 @@ Example:
           <li><a on-tap="lastPage"><iron-icon icon="av:skip-next"></iron-icon></a></li>
         </template>
 
-        <li class="total-info">Items <strong>[[pageStartIdx]] - [[pageEndIdx]]</strong> of Total : [[totalCount]]</li>
+        <li class="total-info">
+          <select on-change="setLimitValue">
+            <template is="dom-repeat" items={{limits}} as=item>
+              <option value="[[item]]">[[item]]</option>
+            </template>
+          </select>
+          Items <strong>[[pageStartIdx]] - [[pageEndIdx]]</strong> of Total : [[totalCount]]
+        </li>
       </ul>
     </template>
 
@@ -264,7 +275,20 @@ Example:
           value: 50,
           nofity: true
         },
-
+        /**
+         * The `limits` attribute defines as array
+         * of items to show per page
+         * ex: [50,100,500,1000,10000]
+         *
+         * @attrbute limits
+         * @type Array[number]
+         */
+        limits :{
+          type: Array,
+          value: function(){
+            return [50,100,500,1000,10000]
+          }
+        },
         /**
          * The `currentPage` attribute specifies the
          * current active page in view
@@ -481,6 +505,15 @@ Example:
       _totalCountChanged: function(totalCount) {
         this.setTotalPage();
         this.showFlag = this.totalPage > 1;
+      },
+      /**
+       * limit이 변경될때 total count가 변경되고 총 데이타 수량이 limit 보다 작을 경우에는 current page가 1로 계산된다.
+       */
+      setLimitValue: function(e){
+        this.limit = parseInt(e.target.value);
+        this.setTotalPage();
+        this.totalCount<=this.limit?this.currentPage = 1 : ''
+        this.fire('page-limit-changed',{limit: this.limit})
       }
     });
   </script>
