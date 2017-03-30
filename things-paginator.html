@@ -1,6 +1,6 @@
 <!--
 
-# &lt;mercury-paginator&gt;
+## things-paginator
 
 >  A element providing a solution to paginate lists (Polymer 1.0 compatible).
 
@@ -254,9 +254,9 @@ Example:
 
         /**
          * The `showFlag` attribute defines if paginator display or not
-         *
+         *********
          * @attribute showFlag
-         * @type boolean
+         * @type {boolean}
          */
         showFlag: {
           type: Boolean,
@@ -266,9 +266,9 @@ Example:
         /**
          * The `limit` attribute defines the number
          * of items to show per page
-         *
+         *********
          * @attribute limit
-         * @type number
+         * @type {number}
          */
         limit: {
           type: Number,
@@ -279,9 +279,9 @@ Example:
          * The `limits` attribute defines as array
          * of items to show per page
          * ex: [50,100,500,1000,10000]
-         *
+         ********
          * @attrbute limits
-         * @type Array[number]
+         * @type {Array}
          */
         limits :{
           type: Array,
@@ -292,9 +292,9 @@ Example:
         /**
          * The `currentPage` attribute specifies the
          * current active page in view
-         *
+         *******
          * @attribute currentPage
-         * @type number
+         * @type {Number}
          */
         currentPage: {
           type: Number,
@@ -306,9 +306,9 @@ Example:
         /**
          * The `totalCount` attribute specifies the
          * total record count
-         *
+         ********
          * @attribute currentpage
-         * @type number
+         * @type {Number}
          */
         totalCount: {
           type: Number,
@@ -319,9 +319,9 @@ Example:
         /**
          * The `totalCount` attribute specifies the
          * total record count
-         *
+         ********
          * @attribute currentpage
-         * @type number
+         * @type {Number}
          */
         totalPage : {
           type: Number,
@@ -332,9 +332,9 @@ Example:
         /**
          * The `totalCount` attribute specifies the
          * total record count
-         *
+         ********
          * @attribute currentpage
-         * @type number
+         * @type {Number}
          */
         pageStartIdx: {
           type: Number,
@@ -344,9 +344,9 @@ Example:
         /**
          * The `totalCount` attribute specifies the
          * total record count
-         *
+         ********
          * @attribute currentpage
-         * @type number
+         * @type {Number}
          */
         pageEndIdx: {
           type: Number,
@@ -356,9 +356,9 @@ Example:
         /**
          * The `previous` attribute specifies the label
          * for the Previous button
-         *
+         ********
          * @attribute previous
-         * @type string
+         * @type {string}
          */
         previous: {
           type: String,
@@ -368,30 +368,42 @@ Example:
         /**
          * The `next` attribute specifies the label
          * for the Next button
-         *
+         ********
          * @attribute next
-         * @type string
+         * @type {String}
          */
         next: {
           type: String,
           value: '>'
         },
-
+        /**
+         ********
+         * @type {Boolean}
+         */
         showFirst: {
           type: Boolean,
           value: true
         },
-
+        /**
+         ********
+         * @type {Boolean}
+         */
         showLast: {
           type:Boolean,
           value: true
         },
-
+        /**
+         ********
+         * @type {String}
+         */
         disableNext: {
           type: String,
           computed: '_disableNextBtn(currentPage)'
         },
-
+        /**
+         ********
+         * @type {String}
+         */
         disablePrev: {
           type: String,
           computed: '_disablePrevBtn(currentPage, totalPage)'
@@ -422,6 +434,7 @@ Example:
 
       /**
        * Navigate to the first page
+       * *******
        * @method firstPage
        */
       firstPage: function () {
@@ -430,6 +443,7 @@ Example:
 
       /**
        * Navigate to the last page
+       * *******
        * @method lastPage
        */
       lastPage: function () {
@@ -438,7 +452,7 @@ Example:
 
       /**
        * Navigate to the previous page
-       *
+       *******
        * @method prevPage
        */
       prevPage: function () {
@@ -450,7 +464,7 @@ Example:
 
       /**
        * Navigate to the next page
-       *
+       ********
        * @method nextPage
        */
       nextPage: function () {
@@ -462,6 +476,7 @@ Example:
 
       /**
        * Set total pages
+       * *******
        */
       setTotalPage: function () {
         var totalPage = Math.ceil( this.totalCount / this.limit );
@@ -473,7 +488,8 @@ Example:
       },
 
       /**
-       * page start index와 page end index를 다시 설정 
+       * page start index와 page end index를 다시 설정
+       * *******
        */
       setPageIndex: function() {
         this.pageStartIdx = ((this.currentPage - 1) * this.limit) + 1;
@@ -508,6 +524,7 @@ Example:
       },
       /**
        * limit이 변경될때 total count가 변경되고 총 데이타 수량이 limit 보다 작을 경우에는 current page가 1로 계산된다.
+       * *******
        */
       setLimitValue: function(e){
         this.limit = parseInt(e.target.value);

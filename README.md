@@ -1,6 +1,34 @@
 # things-paginator
 
-An element providing a starting point for your own reusable Polymer elements.
+
+Example:
+
+```html
+      <template is="dom-bind">
+
+        <mercury-paginator limit="15" items="{{items}}"></mercury-paginator>
+
+        <div class="div-table">
+            <div class="head-row">
+                <div class="div-cell">Id</div>
+                <div class="div-cell">Item name</div>
+                <div class="div-cell">Description</div>
+            </div>
+
+            <template id="items" is="dom-repeat" items="{{items}}">
+                <div class="div-row">
+                    <div class="div-cell">{{item.id}}</div>
+                    <div class="div-cell">{{item.name}}</div>
+                    <div class="div-cell">{{item.description}}</div>
+                </div>
+            </template>
+        </div>
+
+      </template>
+```
+
+*****
+</br></br>
 
 
 ## Dependencies
@@ -14,27 +42,17 @@ Then, go ahead and download the element's dependencies:
 
     bower install
 
-
 ## Playing With Your Element
 
 If you wish to work on your element in isolation, we recommend that you use
 [Polyserve](https://github.com/PolymerLabs/polyserve) to keep your element's
 bower dependencies in line. You can install it via:
 
-    npm install -g polyserve
+    npm install -g polymer-cli
 
 And you can run it via:
 
-    polyserve
+    polymer serve
 
 Once running, you can preview your element at
-`http://localhost:8080/components/things-paginator/`, where `things-paginator` is the name of the directory containing it.
-
-
-## Testing Your Element
-
-Simply navigate to the `/test` directory of your element to run its tests. If
-you are using Polyserve: `http://localhost:8080/components/things-paginator/test/`
-
-## Example 1. Things paginator
-`<things-paginator>` Things paginator A element providing a solution to paginate lists (Polymer 1.0 compatible)
+`http://localhost:8080/components/things-alarm/`, where `things-alarm` is the name of the directory containing it.
