@@ -1,6 +1,6 @@
 # things-paginator
 
-## 화면이나 그리드에서 데이터의 페이지 추가용으로 사용되는 컴포넌트
+## 이는 화면이나 그리드에서 데이터 페이지를 추가하는 용도로 사용되는 컴포넌트이다.
 
 Example:
 
@@ -38,7 +38,7 @@ Example:
       me.pageEndIdx = this.pageEndIdx;
     });
 
-    // id가 paginator-container인 Element에 paginator 추가
+    // id가 paginator-container인 element에 paginator 추가
     Polymer.dom(this.$['paginator-container']).appendChild(paginator);
 ```
 
@@ -48,26 +48,22 @@ Example:
 
 ## Dependencies
 
-Element dependencies are managed via [Bower](http://bower.io/). You can
-install that via:
+element의 종속성은 [Bower](http://bower.io/)를 통해 관리되며, 아래의 방법을 통해 설치할 수 있다.
 
     npm install -g bower
 
-Then, go ahead and download the element's dependencies:
+다음, element의 종속성을 다운로드한다.
 
     bower install
 
 ## Playing With Your Element
 
-If you wish to work on your element in isolation, we recommend that you use
-[Polyserve](https://github.com/PolymerLabs/polyserve) to keep your element's
-bower dependencies in line. You can install it via:
+element를 독립적으로 처리하려면 [Polyserve](https://github.com/PolymerLabs/polyserve)를 사용하여 element의 bower 의존성을 유지하도록 하며, 이는 아래의 방법을 통해 설치할 수 있다.
 
     npm install -g polymer-cli
 
-And you can run it via:
+그리고, 아래의 방법을 통해 실행할 수 있다.
 
     polymer serve
 
-Once running, you can preview your element at
-`http://localhost:8080/components/things-paginator/`, where `things-paginator` is the name of the directory containing it.
+element를 실행한 경우, `things-paginator`이 디렉토리 이름으로 포함되어 있는 `http://localhost:8080/components/things-paginator/`를 통해 이를 미리 확인할 수 있다. 

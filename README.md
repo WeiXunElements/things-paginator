@@ -1,6 +1,6 @@
 # things-paginator
 
-## 화면이나 그리드에서 데이터의 페이지 추가용으로 사용되는 컴포넌트
+## It is a component used to add data pages from the screen or grid.
 
 Example:
 
@@ -38,7 +38,7 @@ Example:
       me.pageEndIdx = this.pageEndIdx;
     });
 
-    // id가 paginator-container인 Element에 paginator 추가
+    // Add paginator to Element whose id is paginator-container
     Polymer.dom(this.$['paginator-container']).appendChild(paginator);
 ```
 
@@ -48,8 +48,7 @@ Example:
 
 ## Dependencies
 
-Element dependencies are managed via [Bower](http://bower.io/). You can
-install that via:
+Element dependencies are managed via [Bower](http://bower.io/). You can install that via:
 
     npm install -g bower
 
@@ -70,4 +69,4 @@ And you can run it via:
     polymer serve
 
 Once running, you can preview your element at
-`http://localhost:8080/components/things-alarm/`, where `things-paginator` is the name of the directory containing it.
+`http://localhost:8080/components/things-paginator/`, where `things-paginator` is the name of the directory containing it.
