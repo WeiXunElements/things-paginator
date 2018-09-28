@@ -21,6 +21,7 @@ Copyright © HatioLab Inc. All rights reserved.
     <style>
       :host {
         display: block;
+        color: var(--things-dark-desc-text-color)
       }
       .pagination {
         display:block;
@@ -34,7 +35,6 @@ Copyright © HatioLab Inc. All rights reserved.
       }
       .pagination li.active a {
         border-bottom:1px dotted var(--things-secondary-background-color);
-        color:var(--things-secondary-background-color);
         text-decoration: none;
       }
       .pagination li.disabled a,
@@ -46,12 +46,7 @@ Copyright © HatioLab Inc. All rights reserved.
         padding:6px 4px 4px 4px;
         cursor: pointer;
         display: inline-block;
-        color: var(--things-primary-text-color);
         text-decoration: none;
-      }
-      .pagination a:hover,
-      .pagination a:focus {
-        color: var(--things-secondary-background-color);
       }
       .current {
         width: 30px;
@@ -62,10 +57,9 @@ Copyright © HatioLab Inc. All rights reserved.
       .total-info{
         float:right !important;
         padding-top:8px;
-        color:var(--things-primary-text-color);
       }
       .total-info strong{
-        color:var(--things-focus-background-color);
+        color:var(--things-secondary-color);
         font-weight:bold;
       }
       .limit-info{
@@ -80,7 +74,6 @@ Copyright © HatioLab Inc. All rights reserved.
         display:block;
         margin-top:4px;
         padding:2px 7px;
-        color:var(--things-primary-text-color);
         font-size:12px;
         font-weight:300;
       }
