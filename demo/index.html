@@ -1,18 +1,17 @@
 <!--
 @license
-Copyright © HatioLab Inc. All rights reserved.
+Copyright © 2015-2021 Shenzhen Weixun All rights reserved.
 -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes" />
     <title>things-paginator Demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="../things-paginator.html">
+    <link rel="import" href="../things-paginator.html" />
   </head>
   <body unresolved>
-
     <p>An example of <code>&lt;things-paginator&gt;</code>:</p>
 
     <p>Make words! <button id="saybtn">Say Something</button></p>
@@ -23,21 +22,19 @@ Copyright © HatioLab Inc. All rights reserved.
     </things-paginator>
 
     <script>
-      var seedElement = document.querySelector('things-paginator');
+      var seedElement = document.querySelector("things-paginator");
 
-      document.querySelector('#saybtn').addEventListener('click', function() {
-        alert(seedElement.sayHello('Hallo!'));
+      document.querySelector("#saybtn").addEventListener("click", function () {
+        alert(seedElement.sayHello("Hallo!"));
       });
 
-      document.querySelector('#laserbtn').addEventListener('click', function() {
+      document.querySelector("#laserbtn").addEventListener("click", function () {
         seedElement.fireLasers();
       });
 
-      document.addEventListener("things-paginator-lasers", function(e) {
+      document.addEventListener("things-paginator-lasers", function (e) {
         console.log(e.detail.sound);
       });
-
     </script>
-
   </body>
 </html>
